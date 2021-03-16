@@ -34,3 +34,5 @@ override.tf.json
 # End of https://www.toptal.com/developers/gitignore/api/terraform
 
 *kubeconfig
+hono-cli-*-exec.jar
+my_stuff.json

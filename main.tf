@@ -34,8 +34,18 @@ module "container_deployment" {
 
   #depends_on here or no need? 
   cluster_name = tostring(module.k8s_cluster_azure.k8s_cluster_name)
+
+  hono_prometheus_enabled = var.hono_helm_chart_monitoring
+  hono_grafana_enabled    = var.hono_helm_chart_monitoring
 }
 
+
+module "cluster_monitoring" {
+  providers  = { kubernetes = kubernetes, helm = helm }
+  depends_on = [module.k8s_cluster_azure]
+  source     = "./modules/cluster_monitoring"
+  count      = var.enable_cluster_monitoring_module ? 1 : 0
+}
 
 terraform {
 

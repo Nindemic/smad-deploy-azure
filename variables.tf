@@ -48,6 +48,7 @@ variable "tfstate_container_name" {
 ## Azure Kubernetes Service -module related variables
 #
 
+
 variable "k8s_agent_count" {
   default = 3
 }
@@ -56,6 +57,7 @@ variable "k8s_agent_count" {
 variable "testing_k8s_agent_count" {
   default = 1
 }
+
 
 # variable "k8s_ssh_public_key" {
 #     default = "~/.ssh/id_rsa.pub"
@@ -99,4 +101,16 @@ variable "cluster_name" {
 
 variable "resource_group_name" {
   default = "azure-k8stest"
+}
+
+variable "hono_helm_chart_monitoring" {
+  type        = bool
+  default     = true
+  description = "enables prometheus and grafana to be deployed from hono helm charts"
+}
+
+variable "enable_cluster_monitoring_module" {
+  type        = bool
+  default     = false
+  description = "Enable cluster_monitoring module"
 }
