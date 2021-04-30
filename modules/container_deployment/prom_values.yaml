@@ -8,6 +8,10 @@ prometheus:
   service:
     type: "LoadBalancer"
   prometheusSpec:
+    remoteRead:
+    - url: "http://10.0.43.110:8086/api/v1/prom/read?db=influx-bucket&u=user&p=password"
+    remoteWrite:
+    - url: "http://10.0.43.110:8086/api/v1/prom/write?db=influx-bucket&u=user&p=password"
     additionalScrapeConfigs:
       - job_name: hono-pods
         honor_timestamps: true

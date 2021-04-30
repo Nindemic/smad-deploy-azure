@@ -1,0 +1,42 @@
+#architecture cannot be "high-availability" unless kubernetes persistent volume claim access mode is "ReadWriteMany"
+architecture: "standalone"
+
+metrics:
+  enabled: true
+  service:
+#   type: ClusterIP
+    port: 9122
+#  serviceMonitor:
+#    namespace: 
+#    selector: 
+#      label: 
+
+auth:
+  user:
+    org: "monitoring-data"
+    bucket: "influx-bucket"
+  readUser:
+    username: "user"
+    password: "password"
+  writeUser:
+    username: "user"
+    password: "password"
+#  existingSecret: "influxdb-secrets"
+
+persistence:
+  enabled: true
+  existingClaim: "influx-pvc"
+
+influxdb: 
+# existingConfiguration: influxdb-config 
+#Only replicaCount 1 is supported with standalone architecture
+  replicaCount: 1
+  service:
+    port: 8086
+#    type: ""
+#  existingConfiguration: "${path.module}/influxdb-config.yaml"
+
+
+ingress:
+  enabled: true
+  name: ingress-nginx

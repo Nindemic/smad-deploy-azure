@@ -48,14 +48,16 @@ variable "tfstate_container_name" {
 ## Azure Kubernetes Service -module related variables
 #
 
+
 variable "k8s_agent_count" {
   default = 3
 }
 
 # Specify node count for testing purposes
 variable "testing_k8s_agent_count" {
-  default = 1
+  default = 2
 }
+
 
 # variable "k8s_ssh_public_key" {
 #     default = "~/.ssh/id_rsa.pub"
@@ -100,6 +102,13 @@ variable "cluster_name" {
 variable "resource_group_name" {
   default = "azure-k8stest"
 }
+
+
+#variable "enable_influxdb_module" {
+#  type        = bool
+#  default     = true
+#  description = "Enable influxdb module"
+#}
 
 ###################################
 ## Container deployment variables##
