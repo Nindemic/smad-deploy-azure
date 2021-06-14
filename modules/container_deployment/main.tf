@@ -3,8 +3,6 @@
 # https://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs/guides/getting-started
 # https://www.hashicorp.com/blog/kubernetes-cluster-with-aks-and-terraform
 
-
-
 # https://github.com/bitnami/azure-marketplace-charts/tree/a2342181bacffa6d27d265db187dcc938af1c3f0/bitnami/mongodb
 resource "helm_release" "mongodb" {
   name = "mongodb"
@@ -88,11 +86,11 @@ resource "helm_release" "jaeger-operator" {
     file("${path.module}/jaeger_values.yaml")
   ]
 
-  /* 
+  /*
   set {
     name  = "jaeger.spec.ingress.hosts"
     value = "{${var.domain_name}}"
-  } 
+  }
   */
 }
 

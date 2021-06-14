@@ -93,6 +93,36 @@ resource "azurerm_kubernetes_cluster" "k8s_cluster" {
   }
 }
 
+resource "kubernetes_mutating_webhook_configuration" "smallstep_webhook" {
+  metadata {
+    name = "test.terraform.io"
+  }
+
+  webhook {
+    name = "test.terraform.io"
+
+    admission_review_versions = ["v1", "v1beta1"]
+
+    client_config {
+      service {
+        namespace = "hono"
+        name      = "smallstep"
+      }
+    }
+
+    rule {
+      api_groups   = ["apps"]
+      api_versions = ["v1"]
+      operations   = ["CREATE"]
+      resources    = ["deployments"]
+      scope        = "Namespaced"
+    }
+
+    reinvocation_policy = "IfNeeded"
+    side_effects        = "None"
+  }
+}
+
 resource "kubernetes_storage_class" "azure-disk-retain" {
   metadata {
     name = "azure-disk-retain"
@@ -122,11 +152,11 @@ resource "kubernetes_persistent_volume_claim" "example" {
   }
 }
 
-# resource "kubernetes_namespace" "hono" {
-#  metadata {
-#    name = "hono"
-#  }
-#}
+resource "kubernetes_namespace" "hono" {
+  metadata {
+    name = "hono"
+  }
+}
 
 resource "kubernetes_persistent_volume_claim" "influxdb" {
   metadata {

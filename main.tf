@@ -39,7 +39,7 @@ module "container_deployment" {
   mongodb_password = var.mongodb_password
   k8s_dns_prefix   = local.k8s_dns_prefix
   domain_name      = local.domain_name
-  #depends_on here or no need? 
+  #depends_on here or no need?
   cluster_name = tostring(module.k8s_cluster_azure.k8s_cluster_name)
 
 }
@@ -94,6 +94,12 @@ resource "kubectl_manifest" "tls_manifest" {
 #########################
 #########################
 
+module "smallstep" {
+  providers  = { kubernetes = kubernetes, helm = helm }
+  depends_on = [module.k8s_cluster_azure]
+  source     = "./modules/smallstep"
+}
+
 terraform {
 
   required_providers {
@@ -102,11 +108,11 @@ terraform {
       version = "~> 2.45.1"
     }
     kubernetes = {
-      source  = "hashicorp/kubernetes"
+      source  = "kubernetes"
       version = "~> 2.0.3"
     }
     helm = {
-      source  = "hashicorp/helm"
+      source  = "helm"
       version = "~> 2.1.0"
     }
     kubectl = {
