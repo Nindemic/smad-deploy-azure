@@ -63,5 +63,3 @@ renewer:
 step-certificates:
   autocert:
     enabled: true
-
-    ©

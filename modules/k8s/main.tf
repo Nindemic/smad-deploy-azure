@@ -95,18 +95,18 @@ resource "azurerm_kubernetes_cluster" "k8s_cluster" {
 
 resource "kubernetes_mutating_webhook_configuration" "smallstep_webhook" {
   metadata {
-    name = "test.terraform.io"
+    name = azurerm_kubernetes_cluster.k8s_cluster.fqdn
   }
 
   webhook {
-    name = "test.terraform.io"
+    name = azurerm_kubernetes_cluster.k8s_cluster.fqdn
 
     admission_review_versions = ["v1", "v1beta1"]
 
     client_config {
       service {
         namespace = "hono"
-        name      = "smallstep"
+        name      = "autocert"
       }
     }
 

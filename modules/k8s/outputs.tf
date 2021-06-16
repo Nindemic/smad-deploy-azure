@@ -63,6 +63,9 @@ output "kubelet_object_id" {
   value = azurerm_kubernetes_cluster.k8s_cluster.kubelet_identity[0].object_id
 }
 
+output "k8s_cluster_fqdn" {
+  value = azurerm_kubernetes_cluster.k8s_cluster.fqdn
+}
 /* output "ambassador_public_ip" {
   value = azurerm_public_ip.ambassador-ingress.ip_address
 } */

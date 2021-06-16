@@ -11,3 +11,7 @@ output "kubeconfig_path" {
 output "storagestate_rg_id" {
   value = module.datamodule.storagestate_rg_id
 }
+
+output "k8s_cluster_fqdn" {
+  value = module.k8s_cluster_azure.k8s_cluster_fqdn
+}
