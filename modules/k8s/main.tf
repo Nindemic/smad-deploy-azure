@@ -105,7 +105,7 @@ resource "kubernetes_mutating_webhook_configuration" "smallstep_webhook" {
 
     client_config {
       service {
-        namespace = "hono"
+        namespace = "default"
         name      = "autocert"
       }
     }
@@ -151,12 +151,14 @@ resource "kubernetes_persistent_volume_claim" "example" {
     storage_class_name = "azure-disk-retain"
   }
 }
-
+/*
 resource "kubernetes_namespace" "hono" {
   metadata {
-    name = "hono"
+    name  = "hono"
   }
 }
+*/
+
 
 resource "kubernetes_persistent_volume_claim" "influxdb" {
   metadata {

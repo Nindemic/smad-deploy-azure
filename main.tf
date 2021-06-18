@@ -95,7 +95,6 @@ resource "kubectl_manifest" "tls_manifest" {
 #########################
 
 module "smallstep" {
-  providers  = { kubernetes = kubernetes, helm = helm }
   depends_on = [module.k8s_cluster_azure]
   source     = "./modules/smallstep"
 }

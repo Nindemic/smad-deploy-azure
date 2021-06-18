@@ -11,7 +11,7 @@ variable "project_name" {
 }
 
 variable "k8s_agent_count" {
-  default = 3
+  default = 4
 }
 
 # variable "k8s_ssh_public_key" {
@@ -39,7 +39,7 @@ variable "log_analytics_workspace_location" {
   default = "westeurope"
 }
 
-# refer https://azure.microsoft.com/pricing/details/monitor/ for log analytics pricing 
+# refer https://azure.microsoft.com/pricing/details/monitor/ for log analytics pricing
 variable "log_analytics_workspace_sku" {
   default = "PerGB2018"
 }
